@@ -11,13 +11,9 @@ import com.udacity.asteroidradar.api.AsteroidApi
 import com.udacity.asteroidradar.api.PictureOfDayApi
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import kotlinx.coroutines.launch
+import org.json.JSONException
 import org.json.JSONObject
 import java.lang.Exception
-
-
-//Tentar comunicar com a API e obter uma resposta. A resposta vem em formato String. Tentar transformar a resposta String em um
-//objeto JSONObject. Transformando em objeto, utilizar a funcão pronta pra fazer o parse do objeto Json em uma lista de asteroides
-//Adicionar essa lsita em uma livedata aqui no viewmodel.
 
 class MainViewModel : ViewModel() {
 
@@ -27,10 +23,12 @@ class MainViewModel : ViewModel() {
     val pictureOfDay: LiveData<PictureOfDay>
         get() = _pictureOfDay
 
-    private val _stringResponse = MutableLiveData<String>()
+    private val _pictureStatus = MutableLiveData<PictureOfDayApiStatus>()
 
-    val stringResponse: LiveData<String>
-        get() = _stringResponse
+    val pictureStatus: LiveData<PictureOfDayApiStatus>
+        get() = _pictureStatus
+
+    private var stringResponse: String? = null
 
     private val _asteroids = MutableLiveData<List<Asteroid>>()
 
@@ -46,14 +44,10 @@ class MainViewModel : ViewModel() {
     private fun getAsteroids() {
         viewModelScope.launch {
             try {
-                _stringResponse.value = AsteroidApi.retrofitAsteroidService.getAsteroids()
-                Log.d(TAG, "getAsteroids: " + _stringResponse.value)
-
-//                parseAsteroidResponse(_stringResponse.value!!)
-                val jsonObject = JSONObject(_stringResponse.value)
-
-                val list = parseAsteroidsJsonResult(jsonObject)
-                Log.d(TAG, "getAsteroids: " + list[0])
+                stringResponse = AsteroidApi.retrofitAsteroidService.getAsteroids()
+                val jsonObject = JSONObject(stringResponse)
+                _asteroids.value = parseAsteroidsJsonResult(jsonObject)
+                Log.d(TAG, "getAsteroids: " + (_asteroids.value as ArrayList<Asteroid>)[0])
             }
             catch (e: Exception){
                 Log.e(TAG, "getAsteroids: Failed ", e)
@@ -61,30 +55,22 @@ class MainViewModel : ViewModel() {
         }
     }
 
-//    private suspend fun parseAsteroidResponse(stringResponse: String): JSONObject{
-//
-//        try {
-//            _asteroids.value = parseAsteroidsJsonResult(stringResponse)
-//        }catch (){
-//
-//        }
-//        finally {
-//            return
-//        }
-//    }
-
-
     private fun getPictureOfTheDay() {
         viewModelScope.launch {
+            _pictureStatus.value = PictureOfDayApiStatus.LOADING
             try {
                 _pictureOfDay.value = PictureOfDayApi.retrofitPictureService.getPicture()
                 Log.d(TAG, "getPictureOfTheDay: " + _pictureOfDay.value)
+                _pictureStatus.value = PictureOfDayApiStatus.DONE
             }
             catch (e: Exception){
                 Log.e(TAG, "getPictureOfTheDay: Failed ", e)
+                _pictureStatus.value = PictureOfDayApiStatus.ERROR
             }
         }
     }
+
+    enum class PictureOfDayApiStatus{LOADING, ERROR, DONE}
 
     companion object{
         val TAG = MainViewModel::class.java.simpleName

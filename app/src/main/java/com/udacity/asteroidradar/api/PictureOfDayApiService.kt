@@ -10,8 +10,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-//ntZ5nWFcadESXiMq7EPvURQRZQEbK7kIxec6AfnP
-
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()

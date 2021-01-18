@@ -26,9 +26,16 @@
                 android:id="@+id/activity_main_image_of_the_day"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:pictureOfDay="@{viewModel.pictureOfDay}"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/placeholder_picture_of_day"/>
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/picture_status"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:pictureApiStatus="@{viewModel.pictureStatus}"/>
 
             <TextView
                 android:id="@+id/textView"
