@@ -2,11 +2,14 @@ package com.udacity.asteroidradar.main
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.entities.Asteroid
 import com.udacity.asteroidradar.entities.PictureOfDay
 
 //It's very important to mark the object as nullable
@@ -57,4 +60,15 @@ fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     } else {
         imageView.setImageResource(R.drawable.ic_status_normal)
     }
+}
+
+@BindingAdapter("listData")
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<Asteroid>?){
+    val adapter = recyclerView.adapter as AsteroidListAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("codename")
+fun bindCodename(textView: TextView, codename: String?){
+    textView.setText(codename)
 }
