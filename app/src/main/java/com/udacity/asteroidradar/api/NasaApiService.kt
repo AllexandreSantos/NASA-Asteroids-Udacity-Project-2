@@ -7,25 +7,37 @@ import com.udacity.asteroidradar.Constants.BASE_URL
 import com.udacity.asteroidradar.PictureOfDay
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Query
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
-private val retrofit = Retrofit.Builder()
+private val retrofitPicture = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(BASE_URL)
     .build()
 
-interface PictureOfDayApiService {
+private val retrofitAsteroid = Retrofit.Builder()
+    .addConverterFactory(ScalarsConverterFactory.create())
+    .baseUrl(BASE_URL)
+    .build()
+
+interface NasaApiService {
     @GET("planetary/apod?api_key=" + BuildConfig.API_KEY)
     suspend fun getPicture(): PictureOfDay
+
+    @GET("neo/rest/v1/feed?&api_key=" + BuildConfig.API_KEY)
+    suspend fun getAsteroids(): String
 }
 
-object PictureOfDayApi {
-    val retrofitPictureService: PictureOfDayApiService by lazy {
-        retrofit.create(PictureOfDayApiService::class.java)
+object NasaApi {
+    val retrofitPictureService: NasaApiService by lazy {
+        retrofitPicture.create(NasaApiService::class.java)
+    }
+
+    val retrofitAsteroidService: NasaApiService by lazy {
+        retrofitAsteroid.create(NasaApiService::class.java)
     }
 }

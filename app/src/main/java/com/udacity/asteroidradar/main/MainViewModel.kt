@@ -7,16 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.PictureOfDay
-import com.udacity.asteroidradar.api.AsteroidApi
-import com.udacity.asteroidradar.api.PictureOfDayApi
+import com.udacity.asteroidradar.api.NasaApi
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import kotlinx.coroutines.launch
-import org.json.JSONException
 import org.json.JSONObject
 import java.lang.Exception
 
 class MainViewModel : ViewModel() {
-
 
     private val _pictureOfDay = MutableLiveData<PictureOfDay>()
 
@@ -44,8 +41,11 @@ class MainViewModel : ViewModel() {
     private fun getAsteroids() {
         viewModelScope.launch {
             try {
-                stringResponse = AsteroidApi.retrofitAsteroidService.getAsteroids()
-                val jsonObject = JSONObject(stringResponse)
+                stringResponse = NasaApi.retrofitAsteroidService.getAsteroids()
+
+                if (stringResponse.isNullOrEmpty()) throw Exception("Empty or null string response from API")
+
+                val jsonObject = JSONObject(stringResponse!!)
                 _asteroids.value = parseAsteroidsJsonResult(jsonObject)
                 Log.d(TAG, "getAsteroids: " + (_asteroids.value as ArrayList<Asteroid>)[0])
             }
@@ -59,13 +59,13 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             _pictureStatus.value = PictureOfDayApiStatus.LOADING
             try {
-                _pictureOfDay.value = PictureOfDayApi.retrofitPictureService.getPicture()
+                _pictureOfDay.value = NasaApi.retrofitPictureService.getPicture()
                 Log.d(TAG, "getPictureOfTheDay: " + _pictureOfDay.value)
                 _pictureStatus.value = PictureOfDayApiStatus.DONE
             }
             catch (e: Exception){
-                Log.e(TAG, "getPictureOfTheDay: Failed ", e)
                 _pictureStatus.value = PictureOfDayApiStatus.ERROR
+                Log.e(TAG, "getPictureOfTheDay: Failed ", e)
             }
         }
     }
