@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.udacity.asteroidradar.Event
 import com.udacity.asteroidradar.entities.Asteroid
 import com.udacity.asteroidradar.entities.PictureOfDay
 import com.udacity.asteroidradar.api.NasaApi
@@ -20,10 +21,15 @@ class MainViewModel : ViewModel() {
     val pictureOfDay: LiveData<PictureOfDay>
         get() = _pictureOfDay
 
-    private val _pictureStatus = MutableLiveData<PictureOfDayApiStatus>()
+    private val _pictureStatus = MutableLiveData<Status>()
 
-    val pictureStatus: LiveData<PictureOfDayApiStatus>
+    val pictureStatus: LiveData<Status>
         get() = _pictureStatus
+
+    private val _asteroidListStatus = MutableLiveData<Status>()
+
+    val asteroidListStatus: LiveData<Status>
+        get() = _asteroidListStatus
 
     private var stringResponse: String? = null
 
@@ -31,6 +37,11 @@ class MainViewModel : ViewModel() {
 
     val asteroids: LiveData<List<Asteroid>>
         get() = _asteroids
+
+    val _navigateToAsteroidDetail = MutableLiveData<Event<Asteroid>>()
+
+    val navigateToAsteroidDetail: LiveData<Event<Asteroid>>
+        get() = _navigateToAsteroidDetail
 
 
     init {
@@ -40,6 +51,7 @@ class MainViewModel : ViewModel() {
 
     private fun getAsteroids() {
         viewModelScope.launch {
+            _asteroidListStatus.value = Status.LOADING
             try {
                 stringResponse = NasaApi.retrofitAsteroidService.getAsteroids()
 
@@ -47,9 +59,10 @@ class MainViewModel : ViewModel() {
 
                 val jsonObject = JSONObject(stringResponse!!)
                 _asteroids.value = parseAsteroidsJsonResult(jsonObject)
-                Log.d(TAG, "getAsteroids: " + (_asteroids.value as ArrayList<Asteroid>)[0])
+                _asteroidListStatus.value = Status.DONE
             }
             catch (e: Exception){
+                _asteroidListStatus.value = Status.ERROR
                 Log.e(TAG, "getAsteroids: Failed ", e)
             }
         }
@@ -57,20 +70,29 @@ class MainViewModel : ViewModel() {
 
     private fun getPictureOfTheDay() {
         viewModelScope.launch {
-            _pictureStatus.value = PictureOfDayApiStatus.LOADING
+            _pictureStatus.value = Status.LOADING
             try {
                 _pictureOfDay.value = NasaApi.retrofitPictureService.getPicture()
                 Log.d(TAG, "getPictureOfTheDay: " + _pictureOfDay.value)
-                _pictureStatus.value = PictureOfDayApiStatus.DONE
+                _pictureStatus.value = Status.DONE
             }
             catch (e: Exception){
-                _pictureStatus.value = PictureOfDayApiStatus.ERROR
+                _pictureStatus.value = Status.ERROR
                 Log.e(TAG, "getPictureOfTheDay: Failed ", e)
             }
         }
     }
 
-    enum class PictureOfDayApiStatus{LOADING, ERROR, DONE}
+    fun retryDataFetch(){
+        getAsteroids()
+        getPictureOfTheDay()
+    }
+
+    fun navigateToAsteroidDetails(asteroid: Asteroid){
+        _navigateToAsteroidDetail.value = Event(asteroid)
+    }
+
+    enum class Status{LOADING, ERROR, DONE}
 
     companion object{
         val TAG = MainViewModel::class.java.simpleName

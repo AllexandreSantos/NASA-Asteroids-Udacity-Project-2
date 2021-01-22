@@ -1,9 +1,13 @@
 package com.udacity.asteroidradar.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 
@@ -20,7 +24,15 @@ class MainFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        binding.asteroidRecycler.adapter = AsteroidListAdapter()
+        binding.asteroidRecycler.adapter = AsteroidListAdapter(AsteroidListAdapter.OnClickListener{
+            viewModel.navigateToAsteroidDetails(it)
+        })
+
+        viewModel.navigateToAsteroidDetail.observe(viewLifecycleOwner, {
+            it?.getContentIfNotHandled()?.let { asteroid ->
+                this.findNavController().navigate(MainFragmentDirections.actionShowDetail(asteroid))
+            }
+        })
 
         setHasOptionsMenu(true)
 

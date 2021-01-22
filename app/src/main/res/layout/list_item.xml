@@ -11,8 +11,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:backgroundColor="@{asteroid.potentiallyHazardous}"
         android:background="@color/app_background">
 
         <TextView
@@ -36,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            app:codename="@{asteroid.closeApproachDate}"
+            android:text="@{asteroid.closeApproachDate}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/codename_tv"
             app:layout_constraintHorizontal_bias="0.0"

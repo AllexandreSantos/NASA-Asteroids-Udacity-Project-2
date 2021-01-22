@@ -2,15 +2,17 @@ package com.udacity.asteroidradar.main
 
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
+import android.widget.ProgressBar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.R.*
 import com.udacity.asteroidradar.entities.Asteroid
 import com.udacity.asteroidradar.entities.PictureOfDay
+import kotlinx.android.synthetic.main.fragment_main.view.*
 
 //It's very important to mark the object as nullable
 @BindingAdapter("pictureOfDay")
@@ -22,32 +24,29 @@ fun bindPictureOfDay(imageView: ImageView, pictureOfDay: PictureOfDay?){
                 .load(imgUri)
                 .apply(
                     RequestOptions()
-                        .placeholder(R.drawable.loading_animation)
-                        .error(R.drawable.ic_broken_image))
+                        .placeholder(drawable.loading_animation)
+                        .error(drawable.ic_broken_image))
                 .into(imageView)
         }
     }else if(pictureOfDay?.mediaType == "video") {
         Glide.with(imageView.context)
-            .load(R.drawable.ic_broken_image)
-            .apply(
-                RequestOptions()
-                    .placeholder(R.drawable.loading_animation))
+            .load(drawable.ic_broken_image)
             .into(imageView)
     }
 }
 
 @BindingAdapter("pictureApiStatus")
-fun bindPictureApiStatus(statusImageView: ImageView, status: MainViewModel.PictureOfDayApiStatus?){
+fun bindPictureApiStatus(statusImageView: ImageView, status: MainViewModel.Status?){
     when (status) {
-        MainViewModel.PictureOfDayApiStatus.LOADING -> {
+        MainViewModel.Status.LOADING -> {
             statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(R.drawable.loading_animation)
+            statusImageView.setImageResource(drawable.loading_animation)
         }
-        MainViewModel.PictureOfDayApiStatus.ERROR -> {
+        MainViewModel.Status.ERROR -> {
             statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(R.drawable.ic_broken_image)
+            statusImageView.setImageResource(drawable.ic_broken_image)
         }
-        MainViewModel.PictureOfDayApiStatus.DONE -> {
+        MainViewModel.Status.DONE -> {
             statusImageView.visibility = View.GONE
         }
     }
@@ -56,9 +55,9 @@ fun bindPictureApiStatus(statusImageView: ImageView, status: MainViewModel.Pictu
 @BindingAdapter("asteroidStatusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
-        imageView.setImageResource(R.drawable.ic_status_potentially_hazardous)
+        imageView.setImageResource(drawable.ic_status_potentially_hazardous)
     } else {
-        imageView.setImageResource(R.drawable.ic_status_normal)
+        imageView.setImageResource(drawable.ic_status_normal)
     }
 }
 
@@ -68,7 +67,31 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<Asteroid>?){
     adapter.submitList(data)
 }
 
-@BindingAdapter("codename")
-fun bindCodename(textView: TextView, codename: String?){
-    textView.setText(codename)
+@BindingAdapter("backgroundColor")
+fun bindBackgroundColor(background: ConstraintLayout, isHazardous: Boolean) {
+    if (isHazardous) {
+        background.setBackgroundColor(background.resources.getColor(color.background_potencially_hazardous))
+    } else {
+        background.setBackgroundColor(background.resources.getColor(color.app_background))
+    }
 }
+
+@BindingAdapter("asteroidApiStatus")
+fun bindAsteroidApiStatus(progressBar: ProgressBar, status: MainViewModel.Status?){
+    when(status){
+        MainViewModel.Status.LOADING -> progressBar.visibility = View.VISIBLE
+        else -> progressBar.visibility = View.INVISIBLE
+    }
+}
+
+@BindingAdapter("brokenDataImage")
+fun bindBrokenData(imageView: ImageView, status: MainViewModel.Status?){
+    when(status){
+        MainViewModel.Status.ERROR -> {
+            imageView.visibility = View.VISIBLE
+            imageView.setImageResource(drawable.ic_connection_error)
+        }
+        else -> imageView.visibility = View.INVISIBLE
+    }
+}
+
