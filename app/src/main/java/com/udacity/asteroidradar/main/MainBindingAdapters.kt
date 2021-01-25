@@ -10,9 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.udacity.asteroidradar.R.*
-import com.udacity.asteroidradar.entities.Asteroid
-import com.udacity.asteroidradar.entities.PictureOfDay
-import kotlinx.android.synthetic.main.fragment_main.view.*
+import com.udacity.asteroidradar.domainentities.Asteroid
+import com.udacity.asteroidradar.domainentities.PictureOfDay
 
 //It's very important to mark the object as nullable
 @BindingAdapter("pictureOfDay")

@@ -1,20 +1,12 @@
 package com.udacity.asteroidradar.main
 
-import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.TextureView
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.annotation.NonNull
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.ListItemBinding
-import com.udacity.asteroidradar.entities.Asteroid
-import kotlinx.android.synthetic.main.list_item.view.*
+import com.udacity.asteroidradar.domainentities.Asteroid
 
 class AsteroidListAdapter(val onClickListener: OnClickListener): ListAdapter<Asteroid, AsteroidListAdapter.ViewHolder>(DiffCallback) {
 

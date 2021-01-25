@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.entities
+package com.udacity.asteroidradar.domainentities
 
 import com.squareup.moshi.Json
 
