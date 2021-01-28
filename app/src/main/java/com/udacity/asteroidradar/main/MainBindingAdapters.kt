@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.udacity.asteroidradar.R.*
-import com.udacity.asteroidradar.domainentities.Asteroid
+import com.udacity.asteroidradar.domainentities.DataTransferAsteroid
 import com.udacity.asteroidradar.domainentities.PictureOfDay
 
 //It's very important to mark the object as nullable
@@ -61,7 +61,7 @@ fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
 }
 
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Asteroid>?){
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<DataTransferAsteroid>?){
     val adapter = recyclerView.adapter as AsteroidListAdapter
     adapter.submitList(data)
 }

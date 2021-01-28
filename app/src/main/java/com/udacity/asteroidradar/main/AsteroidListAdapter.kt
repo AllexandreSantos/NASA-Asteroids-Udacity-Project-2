@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.databinding.ListItemBinding
-import com.udacity.asteroidradar.domainentities.Asteroid
+import com.udacity.asteroidradar.domainentities.DataTransferAsteroid
 
-class AsteroidListAdapter(val onClickListener: OnClickListener): ListAdapter<Asteroid, AsteroidListAdapter.ViewHolder>(DiffCallback) {
+class AsteroidListAdapter(val onClickListener: OnClickListener): ListAdapter<DataTransferAsteroid, AsteroidListAdapter.ViewHolder>(DiffCallback) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val asteroid = getItem(position)
@@ -21,23 +21,23 @@ class AsteroidListAdapter(val onClickListener: OnClickListener): ListAdapter<Ast
     }
 
     class ViewHolder(private var binding: ListItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(asteroid: Asteroid){
-            binding.asteroid = asteroid
+        fun bind(dataTransferAsteroid: DataTransferAsteroid){
+            binding.asteroid = dataTransferAsteroid
             binding.executePendingBindings()
         }
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<Asteroid>() {
-        override fun areItemsTheSame(oldItem: Asteroid, newItem: Asteroid): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<DataTransferAsteroid>() {
+        override fun areItemsTheSame(oldItem: DataTransferAsteroid, newItem: DataTransferAsteroid): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: Asteroid, newItem: Asteroid): Boolean {
+        override fun areContentsTheSame(oldItem: DataTransferAsteroid, newItem: DataTransferAsteroid): Boolean {
             return oldItem.id == newItem.id
         }
     }
 
-    class OnClickListener(val clickListener: (asteroid: Asteroid) -> Unit){
-        fun onClick(asteroid:Asteroid) = clickListener(asteroid)
+    class OnClickListener(val clickListener: (dataTransferAsteroid: DataTransferAsteroid) -> Unit){
+        fun onClick(dataTransferAsteroid:DataTransferAsteroid) = clickListener(dataTransferAsteroid)
     }
 }

@@ -32,12 +32,3 @@ fun getDatabase(context: Context): AsteroidsDatabase{
     return INSTANCE
 }
 
-fun test(context: Context) = object {
-    val x = Room.databaseBuilder(context.applicationContext, AsteroidsDatabase::class.java, "asteroids").build()
-}
-
-object AsteroidRoom{
-    fun test(context: Context): AsteroidsDatabase {
-        return Room.databaseBuilder(context.applicationContext, AsteroidsDatabase::class.java, "asteroids").build()
-    }
-}

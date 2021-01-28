@@ -1,16 +1,16 @@
 package com.udacity.asteroidradar.network
 
-import com.udacity.asteroidradar.domainentities.Asteroid
+import com.udacity.asteroidradar.domainentities.DataTransferAsteroid
 import com.udacity.asteroidradar.Constants
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
+fun parseAsteroidsJsonResult(jsonResult: JSONObject): DataTransferAsteroidContainer {
     val nearEarthObjectsJson = jsonResult.getJSONObject("near_earth_objects")
 
-    val asteroidList = ArrayList<Asteroid>()
+    val asteroidList = ArrayList<DataTransferAsteroid>()
 
     val nextSevenDaysFormattedDates = getNextSevenDaysFormattedDates()
     for (formattedDate in nextSevenDaysFormattedDates) {
@@ -33,13 +33,14 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
             val isPotentiallyHazardous = asteroidJson
                 .getBoolean("is_potentially_hazardous_asteroid")
 
-            val asteroid = Asteroid(id, codename, formattedDate, absoluteMagnitude,
+            val asteroid = DataTransferAsteroid(id, codename, formattedDate, absoluteMagnitude,
                 estimatedDiameter, relativeVelocity, distanceFromEarth, isPotentiallyHazardous)
             asteroidList.add(asteroid)
         }
     }
 
-    return asteroidList
+
+    return DataTransferAsteroidContainer(asteroidList)
 }
 
 private fun getNextSevenDaysFormattedDates(): ArrayList<String> {

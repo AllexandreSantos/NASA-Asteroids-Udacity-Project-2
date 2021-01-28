@@ -5,6 +5,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.BuildConfig
 import com.udacity.asteroidradar.Constants.BASE_URL
 import com.udacity.asteroidradar.domainentities.PictureOfDay
+import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -29,7 +30,7 @@ interface NasaApiService {
     suspend fun getPicture(): PictureOfDay
 
     @GET("neo/rest/v1/feed?&api_key=" + BuildConfig.API_KEY)
-    suspend fun getAsteroids(): String
+    suspend fun getAsteroidsAsync(): Deferred<String>
 }
 
 object NasaApi {

@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.Event
-import com.udacity.asteroidradar.domainentities.Asteroid
+import com.udacity.asteroidradar.domainentities.DataTransferAsteroid
 import com.udacity.asteroidradar.domainentities.PictureOfDay
 import com.udacity.asteroidradar.network.NasaApi
 import com.udacity.asteroidradar.network.parseAsteroidsJsonResult
@@ -33,14 +33,14 @@ class MainViewModel : ViewModel() {
 
     private var stringResponse: String? = null
 
-    private val _asteroids = MutableLiveData<List<Asteroid>>()
+    private val _asteroids = MutableLiveData<List<DataTransferAsteroid>>()
 
-    val asteroids: LiveData<List<Asteroid>>
+    val asteroids: LiveData<List<DataTransferAsteroid>>
         get() = _asteroids
 
-    val _navigateToAsteroidDetail = MutableLiveData<Event<Asteroid>>()
+    val _navigateToAsteroidDetail = MutableLiveData<Event<DataTransferAsteroid>>()
 
-    val navigateToAsteroidDetail: LiveData<Event<Asteroid>>
+    val navigateToAsteroidDetail: LiveData<Event<DataTransferAsteroid>>
         get() = _navigateToAsteroidDetail
 
 
@@ -51,20 +51,20 @@ class MainViewModel : ViewModel() {
 
     private fun getAsteroids() {
         viewModelScope.launch {
-            _asteroidListStatus.value = Status.LOADING
-            try {
-                stringResponse = NasaApi.retrofitAsteroidService.getAsteroids()
-
-                if (stringResponse.isNullOrEmpty()) throw Exception("Empty or null string response from API")
-
-                val jsonObject = JSONObject(stringResponse!!)
-                _asteroids.value = parseAsteroidsJsonResult(jsonObject)
-                _asteroidListStatus.value = Status.DONE
-            }
-            catch (e: Exception){
-                _asteroidListStatus.value = Status.ERROR
-                Log.e(TAG, "getAsteroids: Failed ", e)
-            }
+//            _asteroidListStatus.value = Status.LOADING
+//            try {
+//                stringResponse = NasaApi.retrofitAsteroidService.getAsteroidsAsync()
+//
+//                if (stringResponse.isNullOrEmpty()) throw Exception("Empty or null string response from API")
+//
+//                val jsonObject = JSONObject(stringResponse!!)
+//                _asteroids.value = parseAsteroidsJsonResult(jsonObject)
+//                _asteroidListStatus.value = Status.DONE
+//            }
+//            catch (e: Exception){
+//                _asteroidListStatus.value = Status.ERROR
+//                Log.e(TAG, "getAsteroids: Failed ", e)
+//            }
         }
     }
 
@@ -88,8 +88,8 @@ class MainViewModel : ViewModel() {
         getPictureOfTheDay()
     }
 
-    fun navigateToAsteroidDetails(asteroid: Asteroid){
-        _navigateToAsteroidDetail.value = Event(asteroid)
+    fun navigateToAsteroidDetails(dataTransferAsteroid: DataTransferAsteroid){
+        _navigateToAsteroidDetail.value = Event(dataTransferAsteroid)
     }
 
     enum class Status{LOADING, ERROR, DONE}

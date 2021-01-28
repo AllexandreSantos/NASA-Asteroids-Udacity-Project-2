@@ -7,7 +7,7 @@
     <data>
         <variable
             name="asteroid"
-            type="com.udacity.asteroidradar.domainentities.Asteroid" />
+            type="com.udacity.asteroidradar.domainentities.DataTransferAsteroid" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
