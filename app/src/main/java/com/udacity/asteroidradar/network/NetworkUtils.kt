@@ -51,7 +51,6 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     for (i in 0..Constants.DEFAULT_END_DATE_DAYS) {
         val currentTime = calendar.time
         val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
-        Log.d("oi", "getNextSevenDaysFormattedDates: " + dateFormat.format(currentTime))
         formattedDateList.add(dateFormat.format(currentTime))
         calendar.add(Calendar.DAY_OF_YEAR, 1)
     }

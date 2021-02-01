@@ -33,13 +33,6 @@ class MainViewModel(application: Application) : ViewModel() {
     val asteroidListStatus: LiveData<Status>
         get() = _asteroidListStatus
 
-    private var stringResponse: String? = null
-
-    private val _asteroids = MutableLiveData<List<Asteroid>>()
-
-    val asteroids: LiveData<List<Asteroid>>
-        get() = _asteroids
-
     val _navigateToAsteroidDetail = MutableLiveData<Event<Asteroid>>()
 
     val navigateToAsteroidDetail: LiveData<Event<Asteroid>>
@@ -47,36 +40,15 @@ class MainViewModel(application: Application) : ViewModel() {
 
 
     init {
-//        getAsteroids()
         getPictureOfTheDay()
-
-        viewModelScope.launch {
-            asteroidsRepository.refreshAsteroids()
-        }
+        getAsteroids()
     }
 
-    val test = asteroidsRepository.asteroids.value
+    val asteroids = asteroidsRepository.asteroids
 
     private fun getAsteroids() {
         viewModelScope.launch {
-
-            _asteroidListStatus.value = Status.LOADING
-            try {
-                asteroidsRepository.refreshAsteroids()
-//                if (stringResponse.isNullOrEmpty()) throw Exception("Empty or null string response from API")
-//
-//                val jsonObject = JSONObject(stringResponse!!)
-                _asteroids.value = asteroidsRepository.asteroids.value
-                _asteroidListStatus.value = Status.DONE
-
-            }
-            catch (e: Exception){
-                _asteroidListStatus.value = Status.ERROR
-                Log.e(TAG, "getAsteroids: Failed ", e)
-            }
-            finally {
-
-            }
+            asteroidsRepository.refreshAsteroids()
         }
     }
 

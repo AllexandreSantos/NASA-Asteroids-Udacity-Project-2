@@ -76,10 +76,10 @@ fun bindBackgroundColor(background: ConstraintLayout, isHazardous: Boolean) {
 }
 
 @BindingAdapter("asteroidApiStatus")
-fun bindAsteroidApiStatus(progressBar: ProgressBar, status: MainViewModel.Status?){
-    when(status){
-        MainViewModel.Status.LOADING -> progressBar.visibility = View.VISIBLE
-        else -> progressBar.visibility = View.INVISIBLE
+fun bindAsteroidApiStatus(progressBar: ProgressBar, data: List<Asteroid>?){
+    when(data.isNullOrEmpty()){
+        true -> progressBar.visibility = View.VISIBLE
+        false -> progressBar.visibility = View.INVISIBLE
     }
 }
 

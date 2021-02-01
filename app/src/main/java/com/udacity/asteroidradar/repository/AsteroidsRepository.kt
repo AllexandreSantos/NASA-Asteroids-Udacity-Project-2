@@ -16,8 +16,6 @@ import java.lang.Exception
 
 class AsteroidsRepository (private val database: AsteroidsDatabase){
 
-
-
     val asteroids: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao.getAsteroids()){
         it.asDomainEntity()
     }
@@ -26,9 +24,6 @@ class AsteroidsRepository (private val database: AsteroidsDatabase){
         withContext(Dispatchers.IO){
             try {
                 val stringResponse = NasaApi.retrofitAsteroidService.getAsteroids()
-
-                Log.d(TAG, "refreshAsteroids: " + stringResponse)
-
                 val jsonObject = JSONObject(stringResponse)
                 val dataTransferAsteroids = parseAsteroidsJsonResult(jsonObject)
                 database.asteroidDao.insertAll(*dataTransferAsteroids.asDatabaseAsteroid())
