@@ -30,7 +30,7 @@ interface NasaApiService {
     suspend fun getPicture(): PictureOfDay
 
     @GET("neo/rest/v1/feed?&api_key=" + BuildConfig.API_KEY)
-    suspend fun getAsteroidsAsync(): Deferred<String>
+    suspend fun getAsteroids(): String
 }
 
 object NasaApi {

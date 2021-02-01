@@ -2,7 +2,7 @@ package com.udacity.asteroidradar.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.udacity.asteroidradar.domainentities.DataTransferAsteroid
+import com.udacity.asteroidradar.domainentities.Asteroid
 
 @Entity
 data class DatabaseAsteroid constructor (
@@ -16,9 +16,9 @@ data class DatabaseAsteroid constructor (
     val distanceFromEarth: Double,
     val isPotentiallyHazardous: Boolean)
 
-fun List<DatabaseAsteroid>.asDomainEntity(): List<DataTransferAsteroid>{
+fun List<DatabaseAsteroid>.asDomainEntity(): List<Asteroid>{
     return map{
-        DataTransferAsteroid(
+        Asteroid(
             id = it.id,
             codename = it.codename,
             closeApproachDate = it.closeApproachDate,

@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.udacity.asteroidradar.database.AsteroidsDatabase
 import com.udacity.asteroidradar.database.asDomainEntity
-import com.udacity.asteroidradar.domainentities.DataTransferAsteroid
+import com.udacity.asteroidradar.domainentities.Asteroid
 import com.udacity.asteroidradar.network.NasaApi
 import com.udacity.asteroidradar.network.asDatabaseAsteroid
 import com.udacity.asteroidradar.network.parseAsteroidsJsonResult
@@ -17,21 +17,24 @@ import java.lang.Exception
 class AsteroidsRepository (private val database: AsteroidsDatabase){
 
 
-    val asteroids: LiveData<List<DataTransferAsteroid>> = Transformations.map(database.asteroidDao.getAsteroids()){
+
+    val asteroids: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao.getAsteroids()){
         it.asDomainEntity()
     }
 
     suspend fun refreshAsteroids(){
         withContext(Dispatchers.IO){
-            val stringResponse = NasaApi.retrofitAsteroidService.getAsteroidsAsync().await()
             try {
-                if (stringResponse.isEmpty()) throw Exception("Empty or null string response from network API")
+                val stringResponse = NasaApi.retrofitAsteroidService.getAsteroids()
+
+                Log.d(TAG, "refreshAsteroids: " + stringResponse)
 
                 val jsonObject = JSONObject(stringResponse)
                 val dataTransferAsteroids = parseAsteroidsJsonResult(jsonObject)
                 database.asteroidDao.insertAll(*dataTransferAsteroids.asDatabaseAsteroid())
+            }
 
-            }catch (e: Exception){
+            catch (e: Exception){
                 Log.e(TAG, "refreshAsteroids: ", e)
             }
 

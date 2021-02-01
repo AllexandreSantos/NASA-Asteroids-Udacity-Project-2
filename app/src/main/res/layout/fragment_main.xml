@@ -63,7 +63,7 @@
             android:clipToPadding="false"
             tools:itemCount="12"
             tools:listitem="@layout/list_item"
-            app:listData="@{viewModel.asteroids}"
+            app:listData="@{viewModel.test}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
