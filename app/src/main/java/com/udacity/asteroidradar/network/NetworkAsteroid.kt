@@ -3,7 +3,7 @@ package com.udacity.asteroidradar.network
 import com.udacity.asteroidradar.database.DatabaseAsteroid
 import com.udacity.asteroidradar.domainentities.Asteroid
 
-data class DataTransferAsteroidContainer(val asteroids: List<Asteroid>)
+data class DataTransferAsteroidContainer(val asteroids: List<DataTransferAsteroid>)
 
 data class DataTransferAsteroid(val id: Long, val codename: String, val closeApproachDate: String,
                     val absoluteMagnitude: Double, val estimatedDiameter: Double,
