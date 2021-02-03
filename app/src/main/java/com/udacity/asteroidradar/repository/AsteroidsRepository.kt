@@ -3,7 +3,7 @@ package com.udacity.asteroidradar.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.udacity.asteroidradar.database.AsteroidsDatabase
+import com.udacity.asteroidradar.database.AsteroidsPodDatabase
 import com.udacity.asteroidradar.database.asDomainEntity
 import com.udacity.asteroidradar.domainentities.Asteroid
 import com.udacity.asteroidradar.network.NasaApi
@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.lang.Exception
 
-class AsteroidsRepository (private val database: AsteroidsDatabase){
+class AsteroidsRepository (private val database: AsteroidsPodDatabase){
 
     val asteroids: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao.getAsteroids()){
         it.asDomainEntity()
@@ -26,7 +26,7 @@ class AsteroidsRepository (private val database: AsteroidsDatabase){
                 val stringResponse = NasaApi.retrofitAsteroidService.getAsteroids()
                 val jsonObject = JSONObject(stringResponse)
                 val dataTransferAsteroids = parseAsteroidsJsonResult(jsonObject)
-                database.asteroidDao.insertAll(*dataTransferAsteroids.asDatabaseAsteroid())
+                database.asteroidDao.insertAllAsteroids(*dataTransferAsteroids.asDatabaseAsteroid())
             }
 
             catch (e: Exception){

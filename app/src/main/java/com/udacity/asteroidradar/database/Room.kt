@@ -3,7 +3,6 @@ package com.udacity.asteroidradar.database
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import androidx.sqlite.db.SupportSQLiteOpenHelper
 
 @Dao
 interface AsteroidDao {
@@ -12,21 +11,32 @@ interface AsteroidDao {
     fun getAsteroids(): LiveData<List<DatabaseAsteroid>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg asteroids: DatabaseAsteroid)
+    fun insertAllAsteroids(vararg asteroids: DatabaseAsteroid)
 
 }
 
-@Database(entities = [DatabaseAsteroid::class], version =1)
-abstract class AsteroidsDatabase: RoomDatabase(){
+@Dao
+interface PictureOfDayDao{
+    @Query("select * from databasepictureofday")
+    fun getPictureOfDay(): LiveData<DatabasePictureOfDay>
+
+    @Insert(onConflict =  OnConflictStrategy.REPLACE)
+    fun insertPicture(vararg pictureOfDay: DatabasePictureOfDay)
+}
+
+@Database(entities = [DatabaseAsteroid::class, DatabasePictureOfDay::class], version =1)
+abstract class AsteroidsPodDatabase: RoomDatabase(){
     abstract val asteroidDao: AsteroidDao
+    abstract val pictureOfDayDao: PictureOfDayDao
+
 }
 
-private lateinit var INSTANCE: AsteroidsDatabase
+private lateinit var INSTANCE: AsteroidsPodDatabase
 
-fun getDatabase(context: Context): AsteroidsDatabase{
-    synchronized(AsteroidsDatabase::class.java){
+fun getDatabase(context: Context): AsteroidsPodDatabase{
+    synchronized(AsteroidsPodDatabase::class.java){
         if (!::INSTANCE.isInitialized){
-            INSTANCE = Room.databaseBuilder(context.applicationContext, AsteroidsDatabase::class.java, "asteroids").build()
+            INSTANCE = Room.databaseBuilder(context.applicationContext, AsteroidsPodDatabase::class.java, "asteroidspod").build()
         }
     }
     return INSTANCE

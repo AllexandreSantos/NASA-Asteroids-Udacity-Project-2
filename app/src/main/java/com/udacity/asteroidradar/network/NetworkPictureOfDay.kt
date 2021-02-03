@@ -1,27 +1,26 @@
 package com.udacity.asteroidradar.network
 
 import com.squareup.moshi.Json
+import com.udacity.asteroidradar.database.DatabasePictureOfDay
 import com.udacity.asteroidradar.domainentities.PictureOfDay
+import kotlinx.coroutines.test.withTestContext
 
 
-data class DataTransferPictureOfDay(@Json(name = "media_type") val mediaType: String?, val title: String?,
-                                    val url: String?)
+data class DataTransferPictureOfDay(@Json(name = "media_type") val mediaType: String, val title: String,
+                                    val url: String)
 
-//TODO
-//fun DataTransferPictureOfDay.asPictureOfDay(): PictureOfDay{}
+fun DataTransferPictureOfDay.asPictureOfDay(): PictureOfDay{
+    return PictureOfDay(
+            mediaType = this.mediaType,
+            title = this.title,
+            url = this.url
+            )
+}
 
-
-//fun DataTransferAsteroidContainer.asDatabaseAsteroid(): Array<DatabaseAsteroid> {
-//    return asteroids.map {
-//        DatabaseAsteroid(
-//            id = it.id,
-//            codename = it.codename,
-//            closeApproachDate = it.closeApproachDate,
-//            absoluteMagnitude = it.absoluteMagnitude,
-//            estimatedDiameter = it.estimatedDiameter,
-//            relativeVelocity = it.relativeVelocity,
-//            distanceFromEarth = it.distanceFromEarth,
-//            isPotentiallyHazardous = it.isPotentiallyHazardous
-//        )
-//    }.toTypedArray()
-//}
+fun DataTransferPictureOfDay.asDatabasePicture(): DatabasePictureOfDay{
+    return DatabasePictureOfDay(
+            mediaType = this.mediaType,
+            title = this.title,
+            url = this.url
+    )
+}

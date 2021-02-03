@@ -40,7 +40,7 @@ class MainViewModel(application: Application) : ViewModel() {
 
 
     init {
-        getPictureOfTheDay()
+//        getPictureOfTheDay()
         getAsteroids()
     }
 
@@ -52,24 +52,24 @@ class MainViewModel(application: Application) : ViewModel() {
         }
     }
 
-    private fun getPictureOfTheDay() {
-        viewModelScope.launch {
-            _pictureStatus.value = Status.LOADING
-            try {
-                _pictureOfDay.value = NasaApi.retrofitPictureService.getPicture()
-                Log.d(TAG, "getPictureOfTheDay: " + _pictureOfDay.value)
-                _pictureStatus.value = Status.DONE
-            }
-            catch (e: Exception){
-                _pictureStatus.value = Status.ERROR
-                Log.e(TAG, "getPictureOfTheDay: Failed ", e)
-            }
-        }
-    }
+//    private fun getPictureOfTheDay() {
+//        viewModelScope.launch {
+//            _pictureStatus.value = Status.LOADING
+//            try {
+//                _pictureOfDay.value = NasaApi.retrofitPictureService.getPicture()
+//                Log.d(TAG, "getPictureOfTheDay: " + _pictureOfDay.value)
+//                _pictureStatus.value = Status.DONE
+//            }
+//            catch (e: Exception){
+//                _pictureStatus.value = Status.ERROR
+//                Log.e(TAG, "getPictureOfTheDay: Failed ", e)
+//            }
+//        }
+//    }
 
     fun retryDataFetch(){
 //        getAsteroids()
-        getPictureOfTheDay()
+//        getPictureOfTheDay()
     }
 
     fun navigateToAsteroidDetails(asteroid: Asteroid){

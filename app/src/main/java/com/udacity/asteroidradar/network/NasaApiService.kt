@@ -27,7 +27,7 @@ private val retrofitAsteroid = Retrofit.Builder()
 
 interface NasaApiService {
     @GET("planetary/apod?api_key=" + BuildConfig.API_KEY)
-    suspend fun getPicture(): PictureOfDay
+    suspend fun getPicture(): DataTransferPictureOfDay
 
     @GET("neo/rest/v1/feed?&api_key=" + BuildConfig.API_KEY)
     suspend fun getAsteroids(): String
