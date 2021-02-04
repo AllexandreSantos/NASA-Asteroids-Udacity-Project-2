@@ -6,15 +6,16 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="d/" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="d/oi" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1af47081-63a8-44bf-b65b-6dc8a791fbf4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/database/DatabasePictureOfDay.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/database/PictureOfDayRoom.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/repository/PictureOfDatRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/AsteroidRadarApplication.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/main/MainViewModelFactory.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/worker/RefreshDataWork.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/fragment_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -25,20 +26,32 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Asteroid_Radar.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Asteroid_Radar.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/utils/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/Event.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/utils/Event.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/database/PictureOfDayRoom.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/database/Room.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/database/Room.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/domainentities/PictureOfDay.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/domainentities/PictureOfDay.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/main/MainBindingAdapters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/main/MainBindingAdapters.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/main/MainFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/main/MainFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/main/MainViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/main/MainViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/network/NasaApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/network/NasaApiService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/network/NetworkAsteroid.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/network/NetworkAsteroid.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/network/NetworkPictureOfDay.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/network/NetworkPictureOfDay.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/network/NetworkUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/network/NetworkUtils.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/repository/AsteroidsRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/repository/AsteroidsRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/repository/PictureOfDatRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/udacity/asteroidradar/repository/PictureOfDayRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[0039953790]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -59,8 +72,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile" />
         <option value="Kotlin File" />
+        <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -87,6 +100,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.udacity.asteroidradar.utils" />
       <recent name="com.udacity.asteroidradar.entities" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -180,10 +194,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="53" key="#Plugins/0.0.1536.824@0.0.1536.824" timestamp="1612135478836" />
-    <state x="-1169" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1611781667712">
+    <state x="-1169" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1612466355297">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1169" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1611781667712" />
+    <state x="-1169" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612466355297" />
     <state x="-1231" y="309" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1611086705474">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -201,10 +215,10 @@
     </state>
     <state x="-1366" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612375691360" />
     <state x="410" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1612143218259" />
-    <state x="-1274" y="311" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1611084591709">
+    <state x="-1274" y="311" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1612465881150">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1274" y="311" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1611084591709" />
+    <state x="-1274" y="311" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612465881150" />
     <state x="-1214" y="374" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1611085329324">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -213,33 +227,33 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1828" y="92" width="1736" height="856" key="AVDManager/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1610991011264" />
-    <state x="-1380" y="274" key="AndroidCreateResourceFileDialog" timestamp="1611006975396">
+    <state x="-1380" y="274" key="AndroidCreateResourceFileDialog" timestamp="1612450559464">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1380" y="274" key="AndroidCreateResourceFileDialog/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1611006975396" />
+    <state x="-1380" y="274" key="AndroidCreateResourceFileDialog/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612450559464" />
     <state x="-1180" y="261" key="FileChooserDialogImpl" timestamp="1611871460957">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1180" y="261" key="FileChooserDialogImpl/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1611871460957" />
-    <state width="1877" height="239" key="GridCell.Tab.0.bottom" timestamp="1612364700693">
+    <state width="1877" height="237" key="GridCell.Tab.0.bottom" timestamp="1612467567756">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="239" key="GridCell.Tab.0.bottom/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612364700693" />
+    <state width="1877" height="237" key="GridCell.Tab.0.bottom/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612467567756" />
     <state width="1491" height="215" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1612146734181" />
-    <state width="1877" height="239" key="GridCell.Tab.0.center" timestamp="1612364700692">
+    <state width="1877" height="237" key="GridCell.Tab.0.center" timestamp="1612467567755">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="239" key="GridCell.Tab.0.center/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612364700692" />
+    <state width="1877" height="237" key="GridCell.Tab.0.center/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612467567755" />
     <state width="1491" height="215" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1612146734181" />
-    <state width="1877" height="239" key="GridCell.Tab.0.left" timestamp="1612364700691">
+    <state width="1877" height="237" key="GridCell.Tab.0.left" timestamp="1612467567755">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="239" key="GridCell.Tab.0.left/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612364700691" />
+    <state width="1877" height="237" key="GridCell.Tab.0.left/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612467567755" />
     <state width="1491" height="215" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1612146734181" />
-    <state width="1877" height="239" key="GridCell.Tab.0.right" timestamp="1612364700693">
+    <state width="1877" height="237" key="GridCell.Tab.0.right" timestamp="1612467567755">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="239" key="GridCell.Tab.0.right/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612364700693" />
+    <state width="1877" height="237" key="GridCell.Tab.0.right/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612467567755" />
     <state width="1491" height="215" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1612146734181" />
     <state x="-1459" y="164" key="SettingsEditor" timestamp="1610991084591">
       <screen x="-1920" y="0" width="1920" height="1040" />
@@ -249,10 +263,10 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1278" y="217" key="VCS.ChangeListViewerDialog/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1610991053723" />
-    <state x="0" y="0" width="1382" height="718" maximized="true" key="dock-window-1" timestamp="1612365306956">
+    <state x="0" y="0" width="1382" height="718" maximized="true" key="dock-window-1" timestamp="1612450719566">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="0" y="0" width="1382" height="718" maximized="true" key="dock-window-1/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612365306956" />
+    <state x="0" y="0" width="1382" height="718" maximized="true" key="dock-window-1/0.0.1366.728/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1612450719566" />
     <state x="-1123" y="291" key="refactoring.ChangeSignatureDialog" timestamp="1612298901664">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>

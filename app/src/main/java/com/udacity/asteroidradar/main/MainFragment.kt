@@ -18,7 +18,7 @@ class MainFragment : Fragment() {
         val activity = requireNotNull(this.activity){
             "You can only access the viewModel after onViewCreated()"
         }
-    ViewModelProviders.of(this, MainViewModel.Factory(activity.application)).get(MainViewModel::class.java)
+    ViewModelProviders.of(this, MainViewModelFactory(activity.application)).get(MainViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

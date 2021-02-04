@@ -6,14 +6,13 @@ import androidx.room.*
 
 @Dao
 interface AsteroidDao {
-
     @Query("select * from databaseasteroid")
     fun getAsteroids(): LiveData<List<DatabaseAsteroid>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllAsteroids(vararg asteroids: DatabaseAsteroid)
-
 }
+
 
 @Dao
 interface PictureOfDayDao{
@@ -24,14 +23,16 @@ interface PictureOfDayDao{
     fun insertPicture(vararg pictureOfDay: DatabasePictureOfDay)
 }
 
+
 @Database(entities = [DatabaseAsteroid::class, DatabasePictureOfDay::class], version =1)
 abstract class AsteroidsPodDatabase: RoomDatabase(){
     abstract val asteroidDao: AsteroidDao
     abstract val pictureOfDayDao: PictureOfDayDao
-
 }
 
+
 private lateinit var INSTANCE: AsteroidsPodDatabase
+
 
 fun getDatabase(context: Context): AsteroidsPodDatabase{
     synchronized(AsteroidsPodDatabase::class.java){
@@ -41,4 +42,3 @@ fun getDatabase(context: Context): AsteroidsPodDatabase{
     }
     return INSTANCE
 }
-

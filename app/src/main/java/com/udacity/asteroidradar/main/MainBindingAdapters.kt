@@ -13,7 +13,7 @@ import com.udacity.asteroidradar.R.*
 import com.udacity.asteroidradar.domainentities.Asteroid
 import com.udacity.asteroidradar.domainentities.PictureOfDay
 
-//It's very important to mark the object as nullable
+//It's very important to mark the objects as nullable
 @BindingAdapter("pictureOfDay")
 fun bindPictureOfDay(imageView: ImageView, pictureOfDay: PictureOfDay?){
     if (pictureOfDay?.mediaType == "image"){
@@ -34,22 +34,22 @@ fun bindPictureOfDay(imageView: ImageView, pictureOfDay: PictureOfDay?){
     }
 }
 
-@BindingAdapter("pictureApiStatus")
-fun bindPictureApiStatus(statusImageView: ImageView, status: MainViewModel.Status?){
-    when (status) {
-        MainViewModel.Status.LOADING -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(drawable.loading_animation)
-        }
-        MainViewModel.Status.ERROR -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(drawable.ic_broken_image)
-        }
-        MainViewModel.Status.DONE -> {
-            statusImageView.visibility = View.GONE
-        }
-    }
-}
+//@BindingAdapter("pictureApiStatus")
+//fun bindPictureApiStatus(statusImageView: ImageView, status: MainViewModel.Status?){
+//    when (status) {
+//        MainViewModel.Status.LOADING -> {
+//            statusImageView.visibility = View.VISIBLE
+//            statusImageView.setImageResource(drawable.loading_animation)
+//        }
+//        MainViewModel.Status.ERROR -> {
+//            statusImageView.visibility = View.VISIBLE
+//            statusImageView.setImageResource(drawable.ic_broken_image)
+//        }
+//        MainViewModel.Status.DONE -> {
+//            statusImageView.visibility = View.GONE
+//        }
+//    }
+//}
 
 @BindingAdapter("asteroidStatusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
@@ -83,14 +83,14 @@ fun bindAsteroidApiStatus(progressBar: ProgressBar, data: List<Asteroid>?){
     }
 }
 
-@BindingAdapter("brokenDataImage")
-fun bindBrokenData(imageView: ImageView, status: MainViewModel.Status?){
-    when(status){
-        MainViewModel.Status.ERROR -> {
-            imageView.visibility = View.VISIBLE
-            imageView.setImageResource(drawable.ic_connection_error)
-        }
-        else -> imageView.visibility = View.INVISIBLE
-    }
-}
+//@BindingAdapter("brokenDataImage")
+//fun bindBrokenData(imageView: ImageView, status: MainViewModel.Status?){
+//    when(status){
+//        MainViewModel.Status.ERROR -> {
+//            imageView.visibility = View.VISIBLE
+//            imageView.setImageResource(drawable.ic_connection_error)
+//        }
+//        else -> imageView.visibility = View.INVISIBLE
+//    }
+//}
 

@@ -12,10 +12,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class PictureOfDatRepository (private val database: AsteroidsPodDatabase){
+class PictureOfDayRepository (private val database: AsteroidsPodDatabase){
 
     val pictureOfDay: LiveData<PictureOfDay> = Transformations.map(database.pictureOfDayDao.getPictureOfDay()){
-        it.asPictureOfDay()
+        it?.asPictureOfDay()
     }
 
     suspend fun refreshPictureOfDay(){
@@ -33,7 +33,7 @@ class PictureOfDatRepository (private val database: AsteroidsPodDatabase){
     }
 
     companion object{
-        val TAG = PictureOfDatRepository::class.java.simpleName
+        val TAG = PictureOfDayRepository::class.java.simpleName
     }
 
 }

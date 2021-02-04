@@ -17,7 +17,7 @@ import java.lang.Exception
 class AsteroidsRepository (private val database: AsteroidsPodDatabase){
 
     val asteroids: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao.getAsteroids()){
-        it.asDomainEntity()
+        it?.asDomainEntity()
     }
 
     suspend fun refreshAsteroids(){

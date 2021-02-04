@@ -3,14 +3,13 @@ package com.udacity.asteroidradar.main
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.udacity.asteroidradar.Event
+import com.udacity.asteroidradar.utils.Event
 import com.udacity.asteroidradar.database.getDatabase
 import com.udacity.asteroidradar.domainentities.Asteroid
-import com.udacity.asteroidradar.domainentities.PictureOfDay
-import com.udacity.asteroidradar.network.NasaApi
 import com.udacity.asteroidradar.repository.AsteroidsRepository
+import com.udacity.asteroidradar.repository.PictureOfDayRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class MainViewModel(application: Application) : ViewModel() {
 
@@ -18,10 +17,7 @@ class MainViewModel(application: Application) : ViewModel() {
 
     private val asteroidsRepository = AsteroidsRepository(database)
 
-    private val _pictureOfDay = MutableLiveData<PictureOfDay>()
-
-    val pictureOfDay: LiveData<PictureOfDay>
-        get() = _pictureOfDay
+    private val pictureOfDayRepository = PictureOfDayRepository(database)
 
     private val _pictureStatus = MutableLiveData<Status>()
 
@@ -40,11 +36,17 @@ class MainViewModel(application: Application) : ViewModel() {
 
 
     init {
-//        getPictureOfTheDay()
+        getPictureOfTheDay()
         getAsteroids()
+//        viewModelScope.launch {
+//            test()
+//        }
     }
 
     val asteroids = asteroidsRepository.asteroids
+
+    val pictureOfDay = pictureOfDayRepository.pictureOfDay
+
 
     private fun getAsteroids() {
         viewModelScope.launch {
@@ -52,45 +54,27 @@ class MainViewModel(application: Application) : ViewModel() {
         }
     }
 
-//    private fun getPictureOfTheDay() {
-//        viewModelScope.launch {
-//            _pictureStatus.value = Status.LOADING
-//            try {
-//                _pictureOfDay.value = NasaApi.retrofitPictureService.getPicture()
-//                Log.d(TAG, "getPictureOfTheDay: " + _pictureOfDay.value)
-//                _pictureStatus.value = Status.DONE
-//            }
-//            catch (e: Exception){
-//                _pictureStatus.value = Status.ERROR
-//                Log.e(TAG, "getPictureOfTheDay: Failed ", e)
-//            }
-//        }
-//    }
-
-    fun retryDataFetch(){
-//        getAsteroids()
-//        getPictureOfTheDay()
+    private fun getPictureOfTheDay(){
+       viewModelScope.launch {
+           pictureOfDayRepository.refreshPictureOfDay()
+       }
     }
 
     fun navigateToAsteroidDetails(asteroid: Asteroid){
         _navigateToAsteroidDetail.value = Event(asteroid)
     }
 
-    enum class Status{LOADING, ERROR, DONE}
+//    fun retryDataFetch(){
+//        getAsteroids()
+//        getPictureOfTheDay()
+//    }
 
-    companion object{
-        val TAG = MainViewModel::class.java.simpleName
-    }
-
-        class Factory(val app: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return MainViewModel(app) as T
-            }
-            throw IllegalArgumentException("Unable to construct viewmodel")
+    suspend fun test(){
+        delay(2000)
+        if (asteroids.value?.isEmpty() == true){
+            Log.d("oi", "test: vazio")
         }
     }
 
-
+    enum class Status{LOADING, ERROR, DONE}
 }

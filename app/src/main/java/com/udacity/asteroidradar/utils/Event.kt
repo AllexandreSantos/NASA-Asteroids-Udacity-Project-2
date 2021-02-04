@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar
+package com.udacity.asteroidradar.utils
 
 open class Event<out T>(private val content: T) {
 

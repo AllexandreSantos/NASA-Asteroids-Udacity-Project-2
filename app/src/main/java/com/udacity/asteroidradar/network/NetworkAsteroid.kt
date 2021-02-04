@@ -10,21 +10,6 @@ data class DataTransferAsteroid(val id: Long, val codename: String, val closeApp
                     val relativeVelocity: Double, val distanceFromEarth: Double,
                     val isPotentiallyHazardous: Boolean)
 
-fun DataTransferAsteroidContainer.asAsteroid(): List<Asteroid>{
-    return asteroids.map {
-        Asteroid(
-            id =  it.id,
-            codename = it.codename,
-            closeApproachDate = it.closeApproachDate,
-            absoluteMagnitude = it.absoluteMagnitude,
-            estimatedDiameter = it.estimatedDiameter,
-            relativeVelocity = it.relativeVelocity,
-            distanceFromEarth = it.distanceFromEarth,
-            isPotentiallyHazardous = it.isPotentiallyHazardous
-        )
-    }
-}
-
 fun DataTransferAsteroidContainer.asDatabaseAsteroid(): Array<DatabaseAsteroid> {
     return asteroids.map {
         DatabaseAsteroid(
@@ -39,3 +24,18 @@ fun DataTransferAsteroidContainer.asDatabaseAsteroid(): Array<DatabaseAsteroid> 
         )
     }.toTypedArray()
 }
+
+//fun DataTransferAsteroidContainer.asAsteroid(): List<Asteroid>{
+//    return asteroids.map {
+//        Asteroid(
+//            id =  it.id,
+//            codename = it.codename,
+//            closeApproachDate = it.closeApproachDate,
+//            absoluteMagnitude = it.absoluteMagnitude,
+//            estimatedDiameter = it.estimatedDiameter,
+//            relativeVelocity = it.relativeVelocity,
+//            distanceFromEarth = it.distanceFromEarth,
+//            isPotentiallyHazardous = it.isPotentiallyHazardous
+//        )
+//    }
+//}
