@@ -19,16 +19,6 @@ class MainViewModel(application: Application) : ViewModel() {
 
     private val pictureOfDayRepository = PictureOfDayRepository(database)
 
-//    private val _pictureStatus = MutableLiveData<Status>()
-//
-//    val pictureStatus: LiveData<Status>
-//        get() = _pictureStatus
-//
-//    private val _asteroidListStatus = MutableLiveData<Status>()
-//
-//    val asteroidListStatus: LiveData<Status>
-//        get() = _asteroidListStatus
-
     val _navigateToAsteroidDetail = MutableLiveData<Event<Asteroid>>()
 
     val navigateToAsteroidDetail: LiveData<Event<Asteroid>>
@@ -38,7 +28,6 @@ class MainViewModel(application: Application) : ViewModel() {
     init {
         getPictureOfTheDay()
         getAsteroids()
-//        checkStatus()
     }
 
     val asteroids = asteroidsRepository.asteroids
@@ -60,23 +49,6 @@ class MainViewModel(application: Application) : ViewModel() {
     fun navigateToAsteroidDetails(asteroid: Asteroid){
         _navigateToAsteroidDetail.value = Event(asteroid)
     }
-
-//    fun retryDataFetch(){
-//        getPictureOfTheDay()
-//        getAsteroids()
-//        checkStatus()
-//    }
-//
-//    private fun checkStatus(){
-//        viewModelScope.launch {
-//            delay(30*1000)
-//            if (asteroids.value.isNullOrEmpty()){
-//
-//            }
-//        }
-//    }
-
-//    enum class Status{LOADING, ERROR, DONE}
 
     companion object{
         val TAG: String = MainViewModel::class.java.simpleName
