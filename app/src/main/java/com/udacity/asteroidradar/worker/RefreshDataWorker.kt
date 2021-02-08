@@ -8,7 +8,7 @@ import com.udacity.asteroidradar.repository.AsteroidsRepository
 import com.udacity.asteroidradar.repository.PictureOfDayRepository
 import retrofit2.HttpException
 
-class RefreshDataWork(appContext: Context, params: WorkerParameters):
+class RefreshDataWorker(appContext: Context, params: WorkerParameters):
     CoroutineWorker(appContext, params) {
 
     override suspend fun doWork(): Result {
@@ -24,6 +24,10 @@ class RefreshDataWork(appContext: Context, params: WorkerParameters):
         } catch (e: HttpException) {
             Result.retry()
         }
+    }
+
+    companion object {
+        const val WORK_NAME = "RefreshDataWorker"
     }
 
 }

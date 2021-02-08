@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.udacity.asteroidradar.R.*
 import com.udacity.asteroidradar.domainentities.Asteroid
 import com.udacity.asteroidradar.domainentities.PictureOfDay
+import com.udacity.asteroidradar.main.adapters.AsteroidListAdapter
 
 //It's very important to mark the objects as nullable
 @BindingAdapter("pictureOfDay")
@@ -51,6 +52,12 @@ fun bindPictureOfDay(imageView: ImageView, pictureOfDay: PictureOfDay?){
 //    }
 //}
 
+@BindingAdapter("listData")
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<Asteroid>?){
+    val adapter = recyclerView.adapter as AsteroidListAdapter
+    adapter.submitList(data)
+}
+
 @BindingAdapter("asteroidStatusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
@@ -58,12 +65,6 @@ fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     } else {
         imageView.setImageResource(drawable.ic_status_normal)
     }
-}
-
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Asteroid>?){
-    val adapter = recyclerView.adapter as AsteroidListAdapter
-    adapter.submitList(data)
 }
 
 @BindingAdapter("backgroundColor")
@@ -79,7 +80,7 @@ fun bindBackgroundColor(background: ConstraintLayout, isHazardous: Boolean) {
 fun bindAsteroidApiStatus(progressBar: ProgressBar, data: List<Asteroid>?){
     when(data.isNullOrEmpty()){
         true -> progressBar.visibility = View.VISIBLE
-        false -> progressBar.visibility = View.INVISIBLE
+        else -> progressBar.visibility = View.INVISIBLE
     }
 }
 

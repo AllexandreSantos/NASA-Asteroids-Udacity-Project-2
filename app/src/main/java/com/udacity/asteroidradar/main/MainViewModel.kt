@@ -19,15 +19,15 @@ class MainViewModel(application: Application) : ViewModel() {
 
     private val pictureOfDayRepository = PictureOfDayRepository(database)
 
-    private val _pictureStatus = MutableLiveData<Status>()
-
-    val pictureStatus: LiveData<Status>
-        get() = _pictureStatus
-
-    private val _asteroidListStatus = MutableLiveData<Status>()
-
-    val asteroidListStatus: LiveData<Status>
-        get() = _asteroidListStatus
+//    private val _pictureStatus = MutableLiveData<Status>()
+//
+//    val pictureStatus: LiveData<Status>
+//        get() = _pictureStatus
+//
+//    private val _asteroidListStatus = MutableLiveData<Status>()
+//
+//    val asteroidListStatus: LiveData<Status>
+//        get() = _asteroidListStatus
 
     val _navigateToAsteroidDetail = MutableLiveData<Event<Asteroid>>()
 
@@ -38,15 +38,12 @@ class MainViewModel(application: Application) : ViewModel() {
     init {
         getPictureOfTheDay()
         getAsteroids()
-//        viewModelScope.launch {
-//            test()
-//        }
+//        checkStatus()
     }
 
     val asteroids = asteroidsRepository.asteroids
 
     val pictureOfDay = pictureOfDayRepository.pictureOfDay
-
 
     private fun getAsteroids() {
         viewModelScope.launch {
@@ -65,16 +62,24 @@ class MainViewModel(application: Application) : ViewModel() {
     }
 
 //    fun retryDataFetch(){
-//        getAsteroids()
 //        getPictureOfTheDay()
+//        getAsteroids()
+//        checkStatus()
+//    }
+//
+//    private fun checkStatus(){
+//        viewModelScope.launch {
+//            delay(30*1000)
+//            if (asteroids.value.isNullOrEmpty()){
+//
+//            }
+//        }
 //    }
 
-    suspend fun test(){
-        delay(2000)
-        if (asteroids.value?.isEmpty() == true){
-            Log.d("oi", "test: vazio")
-        }
+//    enum class Status{LOADING, ERROR, DONE}
+
+    companion object{
+        val TAG: String = MainViewModel::class.java.simpleName
     }
 
-    enum class Status{LOADING, ERROR, DONE}
 }

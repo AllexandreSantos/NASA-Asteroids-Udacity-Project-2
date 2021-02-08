@@ -57,7 +57,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_status_potentially_hazardous" />
+            tools:src="@drawable/ic_status_potentially_hazardous"
+            android:contentDescription="@{@string/is_this_asteroid_dangerous(asteroid.potentiallyHazardous)}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
