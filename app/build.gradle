@@ -16,9 +16,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        //The API_KEY is stored inside the gradle.properties file.
+        //The API_KEY should be stored inside the gradle.properties file.
         // If you want to clone and test this project, you need to get your own NASA API at
         //https://api.nasa.gov/
+        //After getting your API, go to gradle.properties and paste the following line changing the x for your API key
+        //API_KEY = "xxxxxxxxxxxxxxxxxxxx"
         buildConfigField 'String', "API_KEY", API_KEY
     }
     buildTypes {
