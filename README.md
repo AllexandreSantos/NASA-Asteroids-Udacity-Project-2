@@ -18,6 +18,7 @@ This project is built with Android Studio and Kotlin making a good use of:
 * Live Data
 * Room
 * RESTful API's, in particular, Retrofit
+* Data Binding
 * Glide
 * Navigation
 * Worker
