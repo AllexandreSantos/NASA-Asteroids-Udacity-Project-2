@@ -30,7 +30,7 @@ This project makes good use of:
 * Android Gradle plugin version 4.02
 * Gradle version 6.1.1
 
-## Screenchots
+## Screenshots
 ![image](https://raw.githubusercontent.com/AllexandreSantos/NASA-Asteroids-Udacity-Project-2/main/screenshots/screen_1.png)
 ![image](https://raw.githubusercontent.com/AllexandreSantos/NASA-Asteroids-Udacity-Project-2/main/screenshots/screen_2.png)
 ![image](https://raw.githubusercontent.com/AllexandreSantos/NASA-Asteroids-Udacity-Project-2/main/screenshots/screen_3.png)
