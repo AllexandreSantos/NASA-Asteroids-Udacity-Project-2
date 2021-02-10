@@ -12,7 +12,7 @@ Asteroid Radar is an app to view the asteroids detected by NASA that pass near E
 * Build/Rebuild your project
 * Voilà! The app is ready to be run in your phone
 
-##Built With
+## Built With
 This project makes good use of:
 * MVVM
 * Live Data
