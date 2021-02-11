@@ -2,7 +2,7 @@
 Completing this project is a requirement to graduate from the Udacity Android Kotlin Developer.
 Asteroid Radar is an app to view the asteroids detected by NASA that pass near Earth, you can view all the detected asteroids given a period of time with data such as the size, velocity, distance to earth and if they are potentially hazardous
 
-## Gettins Started
+## Getting Started
 * Clone or download the project
 * The second step is to get an API Key from NASA. Got to the following URL - [api.nasa](https://api.nasa.gov/) and scroll down a little and you are going to see a form. Fill in the form and you'll get your API key.
 * Open the project with Android Studio
