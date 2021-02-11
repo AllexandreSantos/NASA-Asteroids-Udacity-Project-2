@@ -4,41 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="asteroid"
-            type="com.udacity.asteroidradar.domainentities.Asteroid" />
+            type="com.allexandresantos.asteroidradar.domainentities.Asteroid" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/app_background">
 
-        <ImageView
-            android:id="@+id/activity_main_image_of_the_day"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            app:asteroidStatusImage="@{asteroid.potentiallyHazardous}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/asteroid_safe"
-            android:contentDescription="@{@string/is_this_asteroid_dangerous(asteroid.potentiallyHazardous)}" />
+            android:background="@color/app_background">
+
+            <ImageView
+                android:id="@+id/activity_main_image_of_the_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@{@string/is_this_asteroid_dangerous(asteroid.potentiallyHazardous)}"
+                app:asteroidStatusImage="@{asteroid.potentiallyHazardous}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/asteroid_safe" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:padding="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_main_image_of_the_day"
-                android:orientation="vertical">
+                app:layout_constraintTop_toBottomOf="@+id/activity_main_image_of_the_day">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -94,9 +97,9 @@
                         android:id="@+id/help_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/tap_to_get_more_information"
                         android:padding="16dp"
-                        app:srcCompat="@drawable/ic_help_circle"
-                        android:contentDescription="@string/tap_to_get_more_information" />
+                        app:srcCompat="@drawable/ic_help_circle" />
 
                 </LinearLayout>
 
@@ -150,6 +153,6 @@
 
             </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
