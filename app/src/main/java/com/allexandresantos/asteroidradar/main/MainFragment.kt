@@ -5,8 +5,17 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+<<<<<<< Updated upstream:app/src/main/java/com/allexandresantos/asteroidradar/main/MainFragment.kt
 import com.allexandresantos.asteroidradar.databinding.FragmentMainBinding
 import com.allexandresantos.asteroidradar.main.adapters.AsteroidListAdapter
+||||||| constructed merge base:app/src/main/java/com/udacity/asteroidradar/main/MainFragment.kt
+import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.databinding.FragmentMainBinding
+import com.udacity.asteroidradar.main.adapters.AsteroidListAdapter
+=======
+import com.udacity.asteroidradar.databinding.FragmentMainBinding
+import com.udacity.asteroidradar.main.adapters.AsteroidListAdapter
+>>>>>>> Stashed changes:app/src/main/java/com/udacity/asteroidradar/main/MainFragment.kt
 
 class MainFragment : Fragment() {
 
@@ -25,6 +34,7 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.asteroidRecycler.adapter = AsteroidListAdapter(AsteroidListAdapter.OnClickListener{
+            //Passing this function as a parameter
             viewModel.navigateToAsteroidDetails(it)
         })
 
